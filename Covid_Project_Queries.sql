@@ -11,7 +11,7 @@
   ----Selecting Data that we are going to be using
 
   SELECT 
-          location,
+                  location,
 		  date ,
 		  total_cases,
 		  new_cases,
@@ -26,7 +26,7 @@
  -- Total cases VS Total Deaths
 
  SELECT 
-        location,
+                location,
 		date ,
 		total_cases,
 		total_deaths, 
@@ -38,7 +38,7 @@
  -- Chances of dying from Covid in Germany. 
 
  SELECT 
-        location,
+            location,
 	    date ,
 	    total_cases,
 	    total_deaths, 
@@ -52,7 +52,7 @@
  -- Total cases VS population in Germany 
 
  SELECT 
-        location,
+                location,
 		date ,
 		total_cases, 
 		population, 
@@ -68,10 +68,10 @@
  -- Which country has the highest infection rate compared to the population.
 
  SELECT 
-        location,
-		MAX(total_cases) AS HighestInfectionCount, 
-		population,
-        MAX((total_cases/population))*100 AS  Percent_Population_Infected
+            location,
+            MAX(total_cases) AS HighestInfectionCount, 
+	    population,
+            MAX((total_cases/population))*100 AS  Percent_Population_Infected
 
  FROM Covid_project..CovidDeaths
  GROUP BY location, population
@@ -85,7 +85,7 @@
   
   SELECT 
         location,
-		MAX(CAST(total_deaths AS int)) AS TotalDeathCount 
+	MAX(CAST(total_deaths AS int)) AS TotalDeathCount 
 
  FROM Covid_project..CovidDeaths
  WHERE continent IS NOT NULL
@@ -100,7 +100,7 @@
 
  SELECT 
         continent,
-		MAX(CAST(total_deaths AS int)) AS TotalDeathCount 
+	MAX(CAST(total_deaths AS int)) AS TotalDeathCount 
 
  FROM Covid_project..CovidDeaths
  WHERE continent IS NOT NULL
@@ -125,9 +125,9 @@
 
  SELECT 
        date,
-	   SUM(new_cases) AS Total_New_Cases,
-	   SUM(CAST(new_deaths AS int)) AS Total_New_Deaths, 
-	   SUM(CAST(new_deaths AS int))/SUM(new_cases)*100 AS Death_Percent
+       SUM(new_cases) AS Total_New_Cases,
+       SUM(CAST(new_deaths AS int)) AS Total_New_Deaths, 
+       SUM(CAST(new_deaths AS int))/SUM(new_cases)*100 AS Death_Percent
 
  FROM Covid_project..CovidDeaths
  WHERE continent IS NOT NULL 
@@ -142,8 +142,8 @@
 
 
 SELECT 
-       dea.continent,
-       dea.location, 
+           dea.continent,
+           dea.location, 
 	   dea.date, 
 	   dea.population, 
 	   vac.new_vaccinations,
@@ -164,8 +164,8 @@ WITH TotalPopulationVsVaccinations (continent, location, date, population, new_v
 AS 
 (
    SELECT 
-          dea.continent,
-          dea.location, 
+              dea.continent,
+              dea.location, 
 	      dea.date, 
 	      dea.population, 
 	      vac.new_vaccinations,
@@ -189,7 +189,7 @@ AS
    DROP TABLE IF EXISTS #TotalPopulationVsVaccinations
    CREATE TABLE #TotalPopulationVsVaccinations
    ( 
-      continent nvarchar(255),
+          continent nvarchar(255),
 	  location nvarchar(255),
 	  date datetime,
 	  population numeric,
@@ -199,8 +199,8 @@ AS
 
 	INSERT INTO #TotalPopulationVsVaccinations
 	SELECT 
-          dea.continent,
-          dea.location, 
+              dea.continent,
+              dea.location, 
 	      dea.date, 
 	      dea.population, 
 	      vac.new_vaccinations,
@@ -213,7 +213,7 @@ AS
 
    SELECT 
           *,
-		  (TotalPeopleVaccinated/population)* 100 AS Percent_Vaccinated
+          (TotalPeopleVaccinated/population)* 100 AS Percent_Vaccinated
    FROM #TotalPopulationVsVaccinations
 
 
@@ -230,8 +230,8 @@ AS
 CREATE VIEW TotalPopulationVsVaccinations AS 
    
    SELECT 
-          dea.continent,
-          dea.location, 
+              dea.continent,
+              dea.location, 
 	      dea.date, 
 	      dea.population, 
 	      vac.new_vaccinations,
