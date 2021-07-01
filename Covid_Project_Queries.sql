@@ -81,7 +81,7 @@
 
  -- Highest Death Count per Country and Population
  --(NOTE: total_deaths is nvarchar(255) dtype, changed it to int to perform aggregate functions)
- --(NOTE: The WHERE clause is impartant since some continent data is missing and loaction is auto_filled as continent)
+ --(NOTE: The WHERE clause is important since some continent data is missing and loaction is auto_filled as continent)
   
   SELECT 
         location,
